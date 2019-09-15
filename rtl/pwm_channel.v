@@ -6,6 +6,13 @@ module pwm_channel (
     output reg        pwm_out
 );
 
-    assign pwm_out = 1'b0;
+    reg [7:0] counter;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            counter <= 8'd0;
+        else
+            counter <= counter + 1'b1;
+    end
 
 endmodule
