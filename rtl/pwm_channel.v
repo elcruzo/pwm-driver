@@ -10,6 +10,9 @@ module pwm_channel (
 
     reg [7:0] counter;
     reg       pwm_raw;
+    reg [7:0] dead_cnt;
+    reg       pwm_h_pre;
+    reg       pwm_l_pre;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n)
@@ -27,7 +30,30 @@ module pwm_channel (
             pwm_raw <= 1'b0;
     end
 
-    assign pwm_h = pwm_raw;
-    assign pwm_l = ~pwm_raw & enable;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            pwm_h_pre <= 1'b0;
+            pwm_l_pre <= 1'b0;
+            pwm_h     <= 1'b0;
+            pwm_l     <= 1'b0;
+            dead_cnt  <= 8'd0;
+        end else begin
+            pwm_h_pre <= pwm_raw;
+            pwm_l_pre <= ~pwm_raw & enable;
+
+            if (pwm_h_pre != pwm_raw || pwm_l_pre != (~pwm_raw & enable)) begin
+                dead_cnt <= dead_time;
+                pwm_h    <= 1'b0;
+                pwm_l    <= 1'b0;
+            end else if (dead_cnt > 0) begin
+                dead_cnt <= dead_cnt - 1'b1;
+                pwm_h    <= 1'b0;
+                pwm_l    <= 1'b0;
+            end else begin
+                pwm_h <= pwm_h_pre;
+                pwm_l <= pwm_l_pre;
+            end
+        end
+    end
 
 endmodule
