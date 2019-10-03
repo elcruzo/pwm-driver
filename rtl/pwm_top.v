@@ -12,4 +12,17 @@ module pwm_top (
     output wire        pwm_b_l
 );
 
+    reg [15:0] prescale;
+
+    always @(*) begin
+        case (freq_sel)
+            4'd0:  prescale = 16'd390;
+            4'd1:  prescale = 16'd195;
+            4'd2:  prescale = 16'd97;
+            4'd3:  prescale = 16'd48;
+            4'd4:  prescale = 16'd24;
+            default: prescale = 16'd97;
+        endcase
+    end
+
 endmodule
