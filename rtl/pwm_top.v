@@ -13,6 +13,7 @@ module pwm_top (
 );
 
     reg [15:0] prescale;
+    wire       pwm_clk;
 
     always @(*) begin
         case (freq_sel)
@@ -24,5 +25,12 @@ module pwm_top (
             default: prescale = 16'd97;
         endcase
     end
+
+    prescaler u_pre (
+        .clk  (clk),
+        .rst_n(rst_n),
+        .div  (prescale),
+        .tick (pwm_clk)
+    );
 
 endmodule
