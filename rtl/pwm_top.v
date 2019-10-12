@@ -43,4 +43,14 @@ module pwm_top (
         .pwm_l    (pwm_a_l)
     );
 
+    pwm_channel u_ch_b (
+        .clk      (pwm_clk),
+        .rst_n    (rst_n),
+        .enable   (enable),
+        .duty     (duty_b),
+        .dead_time(dead_time),
+        .pwm_h    (pwm_b_h),
+        .pwm_l    (pwm_b_l)
+    );
+
 endmodule
