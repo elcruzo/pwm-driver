@@ -23,4 +23,29 @@ module pwm_channel_tb;
     initial clk = 0;
     always #5 clk = ~clk;
 
+    initial begin
+        rst_n     = 0;
+        enable    = 0;
+        duty      = 0;
+        dead_time = 8'd4;
+        #100;
+        rst_n = 1;
+        #100;
+
+        enable = 1;
+        duty   = 8'd128;
+        #50000;
+
+        duty = 8'd64;
+        #50000;
+
+        duty = 8'd192;
+        #50000;
+
+        enable = 0;
+        #10000;
+
+        \$finish;
+    end
+
 endmodule
