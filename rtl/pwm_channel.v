@@ -18,7 +18,7 @@ module pwm_channel (
         if (!rst_n)
             counter <= 8'd0;
         else
-            counter <= counter + 1'b1;
+            counter <= counter + 1'b1'b1;
     end
 
     always @(posedge clk or negedge rst_n) begin
