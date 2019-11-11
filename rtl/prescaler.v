@@ -23,3 +23,4 @@ module prescaler (
     end
 
 endmodule
+// prescaler for pwm frequency
