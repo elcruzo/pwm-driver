@@ -49,3 +49,5 @@ module pwm_channel_tb;
     end
 
 endmodule
+
+// waveform output
