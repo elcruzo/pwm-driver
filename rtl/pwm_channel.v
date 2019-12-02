@@ -57,3 +57,4 @@ module pwm_channel (
     end
 
 endmodule
+// edge detection for dead time
