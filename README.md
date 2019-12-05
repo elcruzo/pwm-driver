@@ -16,3 +16,14 @@ open in vivado, synthesize, program.
 ## pins
 
 see `constraints/basys3.xdc`
+
+## frequency table
+
+| sel | freq   |
+|-----|--------|
+| 0   | 1kHz   |
+| 1   | 2kHz   |
+| 2   | 4kHz   |
+| 3   | 8kHz   |
+| 4   | 16kHz  |
+| 5   | 32kHz  |
