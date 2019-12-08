@@ -55,3 +55,4 @@ module pwm_top (
 
 endmodule
             4'd5:  prescale = 16'd12;   // 32kHz
+// frequency selection based on switches
