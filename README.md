@@ -27,3 +27,8 @@ see `constraints/basys3.xdc`
 | 3   | 8kHz   |
 | 4   | 16kHz  |
 | 5   | 32kHz  |
+
+## dead time
+
+dead time prevents shoot-through in h-bridge drivers.
+set via switches, value in clock cycles.
