@@ -32,3 +32,10 @@ see `constraints/basys3.xdc`
 
 dead time prevents shoot-through in h-bridge drivers.
 set via switches, value in clock cycles.
+
+## simulation
+
+```
+iverilog -o pwm_tb tb/pwm_channel_tb.v rtl/pwm_channel.v
+vvp pwm_tb
+```
