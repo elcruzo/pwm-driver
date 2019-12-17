@@ -24,3 +24,4 @@ module prescaler (
 
 endmodule
 // prescaler for pwm frequency
+// tick output for pwm channels
