@@ -51,3 +51,4 @@ module pwm_channel_tb;
 endmodule
 
 // waveform output
+        // test 100% duty
