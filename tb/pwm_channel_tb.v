@@ -52,3 +52,4 @@ endmodule
 
 // waveform output
         // test 100% duty
+        // test 0% duty
