@@ -39,3 +39,11 @@ set via switches, value in clock cycles.
 iverilog -o pwm_tb tb/pwm_channel_tb.v rtl/pwm_channel.v
 vvp pwm_tb
 ```
+
+## files
+
+- `rtl/pwm_channel.v` - single pwm channel with dead time
+- `rtl/prescaler.v` - clock divider
+- `rtl/pwm_top.v` - top module with dual channels
+- `constraints/basys3.xdc` - fpga pin mapping
+- `tb/pwm_channel_tb.v` - testbench
