@@ -69,3 +69,6 @@ set_property PACKAGE_PIN H2 [get_ports {freq_sel[2]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {freq_sel[2]}]
 set_property PACKAGE_PIN G3 [get_ports {freq_sel[3]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {freq_sel[3]}]
+
+# Timing constraints
+set_false_path -from [get_ports rst_n]
