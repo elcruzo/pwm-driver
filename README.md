@@ -47,3 +47,7 @@ vvp pwm_tb
 - `rtl/pwm_top.v` - top module with dual channels
 - `constraints/basys3.xdc` - fpga pin mapping
 - `tb/pwm_channel_tb.v` - testbench
+
+## license
+
+mit
