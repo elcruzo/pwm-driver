@@ -59,3 +59,4 @@ module pwm_channel (
 endmodule
 // edge detection for dead time
 // complementary outputs with dead time
+// 8-bit resolution counter
