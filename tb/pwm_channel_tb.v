@@ -55,3 +55,4 @@ endmodule
         // test 0% duty
         // test dead time insertion
 // dead time in clock cycles
+        // verify no shoot-through
