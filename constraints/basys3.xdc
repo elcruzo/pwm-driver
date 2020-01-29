@@ -72,3 +72,9 @@ set_property IOSTANDARD LVCMOS33 [get_ports {freq_sel[3]}]
 
 # Timing constraints
 set_false_path -from [get_ports rst_n]
+
+# Output drive strength
+set_property DRIVE 12 [get_ports pwm_a_h]
+set_property DRIVE 12 [get_ports pwm_a_l]
+set_property DRIVE 12 [get_ports pwm_b_h]
+set_property DRIVE 12 [get_ports pwm_b_l]
