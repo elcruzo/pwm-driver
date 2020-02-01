@@ -58,3 +58,4 @@ endmodule
 // frequency selection based on switches
             4'd6:  prescale = 16'd6;    // 64kHz
 // dual channel pwm for h-bridge
+// motor control pwm generator
