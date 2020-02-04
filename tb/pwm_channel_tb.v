@@ -56,3 +56,4 @@ endmodule
         // test dead time insertion
 // dead time in clock cycles
         // verify no shoot-through
+        // enable/disable test
