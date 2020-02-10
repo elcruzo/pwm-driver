@@ -51,3 +51,9 @@ vvp pwm_tb
 ## license
 
 mit
+
+## usage
+
+1. set duty cycle with switches
+2. select frequency
+3. enable output
