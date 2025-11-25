@@ -15,17 +15,24 @@ module pwm_top (
     reg [15:0] prescale;
     wire       pwm_clk;
 
+    // Frequency selection (assuming 100MHz input clock)
+    // freq_sel -> PWM frequency
+    // 0 -> 1kHz,  1 -> 2kHz,  2 -> 4kHz
+    // 3 -> 8kHz,  4 -> 16kHz, 5 -> 32kHz, 6 -> 64kHz
     always @(*) begin
         case (freq_sel)
-            4'd0:  prescale = 16'd390;
-            4'd1:  prescale = 16'd195;
-            4'd2:  prescale = 16'd97;
-            4'd3:  prescale = 16'd48;
-            4'd4:  prescale = 16'd24;
-            default: prescale = 16'd97;
+            4'd0:    prescale = 16'd390;   // ~1kHz
+            4'd1:    prescale = 16'd195;   // ~2kHz
+            4'd2:    prescale = 16'd97;    // ~4kHz
+            4'd3:    prescale = 16'd48;    // ~8kHz
+            4'd4:    prescale = 16'd24;    // ~16kHz
+            4'd5:    prescale = 16'd12;    // ~32kHz
+            4'd6:    prescale = 16'd6;     // ~64kHz
+            default: prescale = 16'd97;    // default 4kHz
         endcase
     end
 
+    // Clock prescaler
     prescaler u_pre (
         .clk  (clk),
         .rst_n(rst_n),
@@ -33,6 +40,7 @@ module pwm_top (
         .tick (pwm_clk)
     );
 
+    // Channel A - dual output with dead time
     pwm_channel u_ch_a (
         .clk      (pwm_clk),
         .rst_n    (rst_n),
@@ -43,6 +51,7 @@ module pwm_top (
         .pwm_l    (pwm_a_l)
     );
 
+    // Channel B - dual output with dead time
     pwm_channel u_ch_b (
         .clk      (pwm_clk),
         .rst_n    (rst_n),
@@ -54,8 +63,3 @@ module pwm_top (
     );
 
 endmodule
-            4'd5:  prescale = 16'd12;   // 32kHz
-// frequency selection based on switches
-            4'd6:  prescale = 16'd6;    // 64kHz
-// dual channel pwm for h-bridge
-// motor control pwm generator

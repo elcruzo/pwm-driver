@@ -7,22 +7,20 @@ module prescaler (
 
     reg [15:0] counter;
 
+    // Clock divider - generates tick pulse at configurable frequency
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             counter <= 16'd0;
             tick    <= 1'b0;
         end else begin
-            if (counter >= div - 1) begin
+            if (counter >= div - 16'd1) begin
                 counter <= 16'd0;
                 tick    <= 1'b1;
             end else begin
-                counter <= counter + 1'b1;
+                counter <= counter + 16'd1;
                 tick    <= 1'b0;
             end
         end
     end
 
 endmodule
-// prescaler for pwm frequency
-// tick output for pwm channels
-// configurable divider

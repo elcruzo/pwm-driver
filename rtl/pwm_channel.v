@@ -14,13 +14,15 @@ module pwm_channel (
     reg       pwm_h_pre;
     reg       pwm_l_pre;
 
+    // 8-bit counter for PWM period
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n)
             counter <= 8'd0;
         else
-            counter <= counter + 1'b1'b1;
+            counter <= counter + 1'b1;
     end
 
+    // PWM comparison
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n)
             pwm_raw <= 1'b0;
@@ -30,6 +32,7 @@ module pwm_channel (
             pwm_raw <= 1'b0;
     end
 
+    // Dead time insertion for complementary outputs
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             pwm_h_pre <= 1'b0;
@@ -39,9 +42,10 @@ module pwm_channel (
             dead_cnt  <= 8'd0;
         end else begin
             pwm_h_pre <= pwm_raw;
-            pwm_l_pre <= ~pwm_raw & enable;
+            pwm_l_pre <= (~pwm_raw) & enable;
 
-            if (pwm_h_pre != pwm_raw || pwm_l_pre != (~pwm_raw & enable)) begin
+            // Edge detection - insert dead time on transitions
+            if (pwm_h_pre != pwm_raw || pwm_l_pre != ((~pwm_raw) & enable)) begin
                 dead_cnt <= dead_time;
                 pwm_h    <= 1'b0;
                 pwm_l    <= 1'b0;
@@ -57,7 +61,3 @@ module pwm_channel (
     end
 
 endmodule
-// edge detection for dead time
-// complementary outputs with dead time
-// 8-bit resolution counter
-// synchronous reset
